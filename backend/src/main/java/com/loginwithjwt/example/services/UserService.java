@@ -7,6 +7,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
+/**
+ *
+ * @author sudhir bara
+ */
 @Service
 public class UserService {
 
@@ -18,6 +22,11 @@ public class UserService {
         userList.add(new User(UUID.randomUUID().toString(),"tikina","tikina@gmail.com"));
     }
 
+    /**
+     * Retrieve all active Users
+     *
+     * @return list of active users
+     */
     public List<User> getUsers(){
         return this.userList;
     }

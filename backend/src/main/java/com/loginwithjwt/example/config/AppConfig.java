@@ -2,6 +2,8 @@ package com.loginwithjwt.example.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -14,8 +16,8 @@ public class AppConfig {
 
     @Bean
     public UserDetailsService userDetailsService(){
-        UserDetails user = User.builder().username("Sudhir").password(passwordEncoder().encode("sudhir@123")).roles("ADMIN").build();
-        UserDetails user1 = User.builder().username("Anand").password(passwordEncoder().encode("anand@123")).roles("GUEST").build();
+        UserDetails user = User.builder().username("Sudhir").password(passwordEncoder().encode("sudhir@123")).build();
+        UserDetails user1 = User.builder().username("Anand").password(passwordEncoder().encode("anand@123")).build();
         return new InMemoryUserDetailsManager(user,user1);
     }
 
@@ -23,4 +25,13 @@ public class AppConfig {
     public PasswordEncoder passwordEncoder(){
         return new BCryptPasswordEncoder();
     }
+
+//    @Bean
+//    public AuthenticationManager authenticationManager(AuthenticationConfiguration builder) throws Exception {
+//        return builder.getAuthenticationManager();
+//    }
+
+    public static final String[] AUTH_WHITELIST = {
+            "/auth/signin"
+    };
 }
