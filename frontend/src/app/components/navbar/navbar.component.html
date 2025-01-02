@@ -4,6 +4,8 @@
     </button>
     <span>Let's Chat</span>
     <span class="example-spacer"></span>
-    <button type="button" class="btn btn-secondary m-1" routerLink="/login">Login</button>
-    <button type="button" class="btn btn-secondary" routerLink="/dashboard">Dashboard</button>
+    <button *ngIf="!isLoggedIn" type="button" class="btn btn-secondary m-1" routerLink="/login">Login</button>
+    <!-- <button type="button" class="btn btn-secondary" routerLink="/dashboard">Dashboard</button> -->
+    <button *ngIf="isLoggedIn" type="button" class="btn btn-secondary m-1" routerLink="/dashboard">User</button>
+    <button *ngIf="isLoggedIn" type="button" class="btn btn-secondary m-1" (click)="logout()">Logout</button>
   </mat-toolbar>

@@ -12,7 +12,8 @@
               <label for="exampleInputPassword1" class="form-label">Password</label>
               <input [(ngModel)] = "credential.password" name="password" type="password" class="form-control" id="exampleInputPassword1">
             </div>
-            <button class="btn btn-secondary" (click)="submit()">Submit</button>
+            <button type="submit"  class="btn btn-secondary" (click)="reset()">Reset</button>
+            <button style="margin-left:10px;"  type = "submit" (click)="onSubmit()" class="btn btn-secondary">Submit</button>
           </form>
       </div>
       <div class="col"></div>

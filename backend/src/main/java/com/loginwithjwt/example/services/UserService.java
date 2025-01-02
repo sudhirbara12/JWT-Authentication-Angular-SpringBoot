@@ -27,7 +27,7 @@ public class UserService {
      *
      * @return list of active users
      */
-    public List<User> getUsers(){
+    public List<User>    getUsers(){
         return this.userList;
     }
 }

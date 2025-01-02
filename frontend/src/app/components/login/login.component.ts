@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { LoginServiceService } from '../../services/login-service.service';
+import { User } from '../../models/user';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -11,18 +14,35 @@ export class LoginComponent implements OnInit {
     username :"",
     password : ""
   }
+  
+  constructor(private loginservice : LoginServiceService,
+    private router : Router
+  ){}
 
   ngOnInit(): void {
-    
   }
 
-  submit(){
+  user : User;
+
+  onSubmit(){
     if((this.credential.username!="" && this.credential.password!="" ) && (this.credential.username!=null && this.credential.password!=null)){
-      console.log("Form is submitted");
+      this.loginservice.generateToken(this.credential).subscribe({
+        next : (response) => {
+          this.user = response;
+          this.loginservice.login(this.user.jwtToken);
+          this.router.navigate(['dashboard'])
+        },
+        error : (error) => console.log('Login Failed')
+      });
     }
     else {
       console.log("Form is Empty");
     }
+  }
+
+  reset(){
+    this.credential.username = "";
+    this.credential.password = "";
   }
 
 }
